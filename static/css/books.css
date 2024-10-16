@@ -1,0 +1,31 @@
+main {
+    padding-top: 100px;
+}
+
+.truncate-text {
+    white-space: nowrap;       /* Empêche le retour à la ligne */
+    overflow: hidden;          /* Cache le texte débordant */
+    text-overflow: ellipsis;   /* Affiche "..." à la fin du texte */
+    font-weight: 700;
+    color: #333;
+    border-bottom: 2px solid #9f9999;
+    padding-bottom: 10px;
+    font-size: 16px;           /* Ajusté pour rendre le texte plus lisible */
+}
+
+.card img {
+    height: 300px;             /* Hauteur égale pour toutes les cartes */
+    object-fit: cover;         /* Pour s'assurer que l'image remplit bien la carte sans déformation */
+    width: 100%;               /* Ajuste l'image pour remplir la largeur de la carte */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pour espacer le contenu uniformément */
+}
+
+.col-md-3 {
+    width: 25%;                /* Par défaut, mais tu peux ajuster la taille des colonnes si nécessaire */
+}
+

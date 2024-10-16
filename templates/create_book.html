@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <title>Ajouter un nouveau livre</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Ajouter un nouveau livre</h1>
+        <form method="POST" action="{{ url_for('create_book') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                <label for="title">Titre</label>
+                {{ form.title(class_="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label for="price">Prix</label>
+                {{ form.price(class_="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label for="author_id">Auteur</label>
+                {{ form.author_id(class_="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label for="amazon_link">Lien Amazon</label>
+                {{ form.amazon_link(class_="form-control") }}
+            </div>
+
+            <!-- Ajout du champ image_url pour l'URL de l'image du livre -->
+            <div class="form-group">
+                <label for="image_url">URL de l'image</label>
+                {{ form.image_url(class_="form-control") }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+    </div>
+</body>
+</html>

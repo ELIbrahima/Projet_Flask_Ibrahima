@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/books.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Your page content -->
+<main role="main" class="container">
+    <div class="row">
+        {% for x in books %}
+        <div class="col-md-3">
+            <div class="card shadow mb-3">
+                <img src="{{url_for('static', filename='images/' + (x.image_url if x.image_url else 'default.jpg'))}}" class="card-img-top" alt="{{x.title}}">
+                <div class="card-body">
+                    <h5 class="card-title truncate-text">{{x.title}}</h5>
+                    <p class="card-text">de {{x.author.name}} 
+                        {% if current_user.is_authenticated %}
+                        <a class="btn btn-warning btn-sm" href="/edit/author/{{x.author.id}}"><i class="bi bi-pencil"></i></a>
+                        {% endif %}
+                    </p>
+                    <p class="card-text">${{x.price}}</p>
+                    <a href="/book/{{x.id}}" class="btn btn-primary">Voir</a>
+
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('edit_book', book_id=x.id) }}" class="btn btn-warning btn-sm">Modifier</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

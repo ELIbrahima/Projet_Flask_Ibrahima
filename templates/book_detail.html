@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/book.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Your page content -->
+<main role="main" class="container text-center">
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Image du produit -->
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='images/' + (book.image_url if book.image_url else 'default.jpg')) }}" alt="{{ book.title }}" class="img-fluid rounded shadow">
+            </div>
+    
+            <!-- Détails du produit -->
+            <div class="col-md-6">
+                <h1>{{ book.title }}</h1>
+                <p class="text-muted">Par {{ book.author.name }}</p>
+                <h4 class="text-danger">${{ book.price }}</h4>
+    
+                <!-- Description du produit -->
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada feugiat mi, sit amet sodales velit tincidunt sit amet. Vivamus id magna sem.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada feugiat mi, sit amet sodales velit tincidunt sit amet. Vivamus id magna sem.
+                </p>
+    
+                <!-- Bouton pour acheter -->
+                <a href="{{ book.purchase_url }}" class="btn btn-primary btn-lg mt-3">Acheter maintenant</a>
+
+                <!-- Bouton pour modifier, visible uniquement pour les utilisateurs connectés -->
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('edit_book', book_id=book.id) }}" class="btn btn-warning btn-lg mt-3">Modifier</a>
+                {% endif %}
+            </div>
+        </div>
+    
+        <!-- Informations supplémentaires -->
+        <div class="row mt-5">
+            <div class="col">
+                <h3>Détails supplémentaires</h3>
+                <p>Ce livre est une œuvre de grande valeur intellectuelle, parfaite pour enrichir votre bibliothèque.</p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
